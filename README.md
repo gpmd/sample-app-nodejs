@@ -4,7 +4,7 @@ This demo includes all of the files necessary to get started with a basic, hello
 
 ## App Installation
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/bigcommerce/sample-app-nodejs)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/gpmd/sample-app-nodejs)
 
 To get the app running locally, follow these instructions:
 
