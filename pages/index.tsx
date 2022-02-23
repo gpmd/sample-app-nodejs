@@ -14,7 +14,7 @@ const Index = () => {
         <Panel header="Homepage">
             <Flex>
                 <StyledBox border="box" borderRadius="normal" marginRight="xLarge" padding="medium">
-                    <H4>Inventory count test</H4>
+                    <H4>Inventory count</H4>
                     <H1 marginBottom="none">{summary.inventory_count}</H1>
                 </StyledBox>
                 <StyledBox border="box" borderRadius="normal" marginRight="xLarge" padding="medium">
@@ -22,7 +22,7 @@ const Index = () => {
                     <H1 marginBottom="none">{summary.variant_count}</H1>
                 </StyledBox>
                 <StyledBox border="box" borderRadius="normal" padding="medium">
-                    <H4>Primary category</H4>
+                    <H4>Primary category test</H4>
                     <H1 marginBottom="none">{summary.primary_category_name}</H1>
                 </StyledBox>
             </Flex>
