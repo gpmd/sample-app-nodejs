@@ -14,7 +14,7 @@ const FormErrors = {
 
 const WidgetForm = ({ formData, onCancel, onSubmit }: FormProps) => {
     const { name } = formData;
-    const [form, setForm] = useState<FormData>({ name });
+    const [form, setForm] = useState<WidgetFormData>({ name });
     const [errors, setErrors] = useState<StringKeyValue>({});
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
