@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
 import ErrorMessage from '../../components/error';
-import Form from '../../components/form';
+import WidgetForm from '../../components/widgetForm';
 import Loading from '../../components/loading';
 import { useSession } from '../../context/session';
 import { useWidgetInfo, useWidgetList } from '../../lib/hooks';
-import { FormData } from '../../types';
+import { WidgetFormData } from '../../types';
 
 const WidgetInfo = () => {
     const router = useRouter();
@@ -13,11 +13,11 @@ const WidgetInfo = () => {
     const { error, isLoading, widgetList = [], mutateList } = useWidgetList();
     const { isLoading: isInfoLoading, widget } = useWidgetInfo(uuid, widgetList);
     const { name } = widget ?? {};
-    const formData = { name };
+    const WidgetFormData = { name };
 
     const handleCancel = () => router.push('/widgets');
 
-    const handleSubmit = async (data: FormData) => {
+    const handleSubmit = async (data: WidgetFormData) => {
         try {
             const filteredList = widgetList.filter(item => item.id !== uuid);
             const { name } = data;
@@ -46,7 +46,7 @@ const WidgetInfo = () => {
     if (error) return <ErrorMessage error={error} />;
 
     return (
-        <Form formData={formData} onCancel={handleCancel} onSubmit={handleSubmit} />
+        <WidgetForm FormData={WidgetFormData} onCancel={handleCancel} onSubmit={handleSubmit} />
     );
 };
 

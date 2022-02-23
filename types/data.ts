@@ -13,6 +13,15 @@ export interface TableItem {
     stock: number;
 }
 
+export interface WidgetFormData {
+  name: string;
+}
+
+export interface WidgetTableItem {
+  uuid: number;
+  name: string;
+}
+
 export interface ListItem extends FormData {
     id: number;
 }

@@ -3,7 +3,7 @@ import { MoreHorizIcon } from '@bigcommerce/big-design-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
-import { useProductList } from '../../lib/hooks';
+import { useWidgetList } from '../../lib/hooks';
 
 const Widgets = () => {
     const router = useRouter();
