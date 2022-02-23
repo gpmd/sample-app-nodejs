@@ -46,7 +46,7 @@ const WidgetInfo = () => {
     if (error) return <ErrorMessage error={error} />;
 
     return (
-        <WidgetForm FormData={WidgetFormData} onCancel={handleCancel} onSubmit={handleSubmit} />
+        <WidgetForm formData={WidgetFormData} onCancel={handleCancel} onSubmit={handleSubmit} />
     );
 };
 

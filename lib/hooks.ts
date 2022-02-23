@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { useSession } from '../context/session';
-import { ErrorProps, ListItem, Order, QueryParams, ShippingAndProductsInfo } from '../types';
+import { ErrorProps, ListItem, WidgetListItem, Order, QueryParams, ShippingAndProductsInfo } from '../types';
 
 async function fetcher(url: string, query: string) {
     const res = await fetch(`${url}?${query}`);
@@ -122,10 +122,10 @@ export function useWidgetList(query?: QueryParams) {
   };
 }
 
-export function useWidgetInfo(uuid: number, list: ListItem[]) {
+export function useWidgetInfo(uuid: number, list: WidgetListItem[]) {
     const { context } = useSession();
     const params = new URLSearchParams({ context }).toString();
-    const widget = list.find(item => item.id === uuid);
+    const widget = list.find(item => item.uuid === uuid);
     // Conditionally fetch widget if it doesn't exist in the list (e.g. deep linking)
     const { data, error } = useSWR(!widget && context ? [`/api/widgets/${uuid}`, params] : null, fetcher);
 

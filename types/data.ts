@@ -13,6 +13,14 @@ export interface TableItem {
     stock: number;
 }
 
+export interface ListItem extends FormData {
+    id: number;
+}
+
+export interface StringKeyValue {
+    [key: string]: string;
+}
+
 export interface WidgetFormData {
   name: string;
 }
@@ -22,10 +30,6 @@ export interface WidgetTableItem {
   name: string;
 }
 
-export interface ListItem extends FormData {
-    id: number;
-}
-
-export interface StringKeyValue {
-    [key: string]: string;
+export interface WidgetListItem extends WidgetFormData {
+  uuid: number;
 }

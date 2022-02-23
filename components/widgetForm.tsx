@@ -12,7 +12,7 @@ const FormErrors = {
     name: 'Widget name is required',
 };
 
-const WidgetForm = ({ formData, onCancel, onSubmit }: FormProps) => {
+const Form = ({ formData, onCancel, onSubmit }: FormProps) => {
     const { name } = formData;
     const [form, setForm] = useState<WidgetFormData>({ name });
     const [errors, setErrors] = useState<StringKeyValue>({});
@@ -75,4 +75,4 @@ const WidgetForm = ({ formData, onCancel, onSubmit }: FormProps) => {
     );
 };
 
-export default WidgetForm;
+export default Form;
