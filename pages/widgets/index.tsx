@@ -1,4 +1,4 @@
-import { Button, Dropdown, Panel, Small, StatefulTable, Link as StyledLink } from '@bigcommerce/big-design';
+import { Button, Dropdown, Panel, StatefulTable, Link as StyledLink } from '@bigcommerce/big-design';
 import { MoreHorizIcon } from '@bigcommerce/big-design-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -8,7 +8,7 @@ import { useWidgetList } from '../../lib/hooks';
 const Widgets = () => {
     const router = useRouter();
     // Retrieve data from the catalog/widgets endpoint
-    const { error, isLoading, widgetList = [] } = useWidgetList();
+    const { widgetList = [] } = useWidgetList();
     // Properly format data for BigDesign's StatefulTable
     const tableItems = widgetList.map(({ uuid, name }) => ({
         uuid,

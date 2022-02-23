@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import ErrorMessage from '../../components/error';
-import WidgetForm from '../../components/widgetForm';
 import Loading from '../../components/loading';
+import WidgetForm from '../../components/widgetForm';
 import { useSession } from '../../context/session';
 import { useWidgetInfo, useWidgetList } from '../../lib/hooks';
 import { WidgetFormData } from '../../types';

@@ -1,6 +1,6 @@
-import { Button, Checkbox, Flex, FormGroup, Input, Panel, Select, Form as StyledForm, Textarea } from '@bigcommerce/big-design';
+import { Button, Flex, FormGroup, Input, Panel, Form as StyledForm } from '@bigcommerce/big-design';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { WidgetFormData, StringKeyValue } from '../types';
+import { StringKeyValue, WidgetFormData } from '../types';
 
 interface FormProps {
     formData: WidgetFormData;
@@ -25,15 +25,6 @@ const Form = ({ formData, onCancel, onSubmit }: FormProps) => {
         !value && FormErrors[formName]
             ? setErrors(prevErrors => ({ ...prevErrors, [formName]: FormErrors[formName] }))
             : setErrors(({ [formName]: removed, ...prevErrors }) => ({ ...prevErrors }));
-    };
-
-    const handleSelectChange = (value: string) => {
-        setForm(prevForm => ({ ...prevForm, type: value }));
-    };
-
-    const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { checked, name: formName } = event?.target;
-        setForm(prevForm => ({ ...prevForm, [formName]: checked }));
     };
 
     const handleSubmit = (event: FormEvent<EventTarget>) => {
