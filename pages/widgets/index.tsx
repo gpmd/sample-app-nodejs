@@ -8,9 +8,9 @@ import { useWidgetList } from '../../lib/hooks';
 const Widgets = () => {
     const router = useRouter();
     // Retrieve data from the catalog/widgets endpoint
-    const { isError, isLoading, list = [] } = useWidgetList();
+    const { error, isLoading, widgetList = [] } = useWidgetList();
     // Properly format data for BigDesign's StatefulTable
-    const tableItems = list.map(({ uuid, name }) => ({
+    const tableItems = widgetList.map(({ uuid, name }) => ({
         uuid,
         name,
     }));
