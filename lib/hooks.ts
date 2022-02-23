@@ -122,10 +122,10 @@ export function useWidgetList(query?: QueryParams) {
   };
 }
 
-export function useWidgetInfo(uuid: number, list: WidgetListItem[]) {
+export function useWidgetInfo(uuid: number, widgetList: WidgetListItem[]) {
     const { context } = useSession();
     const params = new URLSearchParams({ context }).toString();
-    const widget = list.find(item => item.uuid === uuid);
+    const widget = widgetList.find(item => item.uuid === uuid);
     // Conditionally fetch widget if it doesn't exist in the list (e.g. deep linking)
     const { data, error } = useSWR(!widget && context ? [`/api/widgets/${uuid}`, params] : null, fetcher);
 
