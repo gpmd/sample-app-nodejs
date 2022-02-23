@@ -10,8 +10,8 @@ const WidgetInfo = () => {
     const router = useRouter();
     const encodedContext = useSession()?.context;
     const uuid = Number(router.query?.uuid);
-    const { error, isLoading, list = [], mutateList } = useWidgetList();
-    const { isLoading: isInfoLoading, widget } = useWidgetInfo(uuid, list);
+    const { error, isLoading, widgetList = [], mutateList } = useWidgetList();
+    const { isLoading: isInfoLoading, widget } = useWidgetInfo(uuid, widgetList);
     const { name } = widget ?? {};
     const formData = { name };
 
@@ -19,7 +19,7 @@ const WidgetInfo = () => {
 
     const handleSubmit = async (data: FormData) => {
         try {
-            const filteredList = list.filter(item => item.id !== uuid);
+            const filteredList = widgetList.filter(item => item.id !== uuid);
             const { name } = data;
             const apiFormattedData = { name };
 
