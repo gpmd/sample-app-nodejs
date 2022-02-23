@@ -5,7 +5,7 @@ import { WidgetFormData, StringKeyValue } from '../types';
 interface FormProps {
     formData: WidgetFormData;
     onCancel(): void;
-    onSubmit(form: FormData): void;
+    onSubmit(form: WidgetFormData): void;
 }
 
 const FormErrors = {
