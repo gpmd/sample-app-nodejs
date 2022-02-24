@@ -1,4 +1,4 @@
-import { Box, Flex, H1, H4, Text, Panel } from '@bigcommerce/big-design';
+import { Box, Flex, H1, H4, Panel, Text } from '@bigcommerce/big-design';
 import styled from 'styled-components';
 import ErrorMessage from '../components/error';
 import Loading from '../components/loading';
