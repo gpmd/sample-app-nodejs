@@ -1,34 +1,27 @@
-import { Panel, Link as StyledLink, Table } from '@bigcommerce/big-design';
-import Link from 'next/link';
-import { ReactElement } from 'react';
-import { useWidgetList } from '../../lib/hooks';
-import { WidgetsTableItem } from '../../types';
+import { H1, Panel, Text } from '@bigcommerce/big-design';
 
 const Widgets = () => {
-  const { list = [], meta = {} } = useWidgetList();
-  const tableItems: WidgetsTableItem[] = list.map(({ uuid, name }) => ({
-      uuid,
-      name,
-  }));
+  fetch("https://api.bigcommerce.com/stores/mxw8ttfcei/v3/content/widgets", {
+    "method": "GET",
+    "headers": {
+      "Content-Type": "application/json",
+      "Accept": "application/json",
+      "X-Auth-Token": "2jt2u7hbw6mvz8kjq3cq516zh447voi"
+    }
+  })
+  .then(response => {
+    const data = response;
 
-  const renderName = (uuid: number, name: string): ReactElement => (
-      <Link href={`/widgets/${uuid}`}>
-          <StyledLink>{name}</StyledLink>
-      </Link>
-  );
-
-  return (
+    return (
       <Panel>
-          <Table
-              columns={[
-                  { header: 'Widget name', hash: 'name', render: ({ uuid, name }) => renderName(uuid, name) },
-              ]}
-              items={tableItems}
-              itemName="Widgets"
-              stickyHeader
-          />
+          <H1>Widgets</H1>
+          <Text>{data}</Text>
       </Panel>
-  );
+    );
+  })
+  .catch(err => {
+    console.error(err);
+  });
 };
 
 export default Widgets;
