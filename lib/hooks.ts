@@ -101,7 +101,7 @@ export function useWidgets() {
   const { data, error } = useSWR(encodedContext ? ['/api/widgets', encodedContext] : null, fetcher);
 
   return {
-      summary: data,
-      isError: error,
+      widgetsSummary: data,
+      widgetsError: error,
   };
 }

@@ -1,17 +1,25 @@
-import { Box, Flex, H1, H4, Panel } from '@bigcommerce/big-design';
+import { Box, Flex, H1, H4, P, Panel } from '@bigcommerce/big-design';
 import styled from 'styled-components';
 import ErrorMessage from '../components/error';
 import Loading from '../components/loading';
-import { useProducts } from '../lib/hooks';
+import { useProducts, useWidgets } from '../lib/hooks';
 
 const Index = () => {
     const { error, isLoading, summary } = useProducts();
+    const { widgetsError, widgetsSummary } = useWidgets();
 
     if (isLoading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
+    if (widgetsError) return <ErrorMessage error={error} />;
 
     return (
         <Panel header="Homepage">
+            <Flex>
+                <StyledBox border="box" borderRadius="normal" marginRight="xLarge" padding="medium">
+                    <H4>Widgets</H4>
+                    <P marginBottom="none">{widgetsSummary}</P>
+                </StyledBox>
+            </Flex>
             <Flex>
                 <StyledBox border="box" borderRadius="normal" marginRight="xLarge" padding="medium">
                     <H4>Inventory count</H4>
