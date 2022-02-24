@@ -1,4 +1,3 @@
-import { errorMonitor } from 'events';
 import useSWR from 'swr';
 import { useSession } from '../context/session';
 import { ErrorProps, ListItem, Order, QueryParams, ShippingAndProductsInfo } from '../types';
@@ -25,10 +24,8 @@ export function useProducts() {
     // Request is deduped and cached; Can be shared across components
     const { data, error } = useSWR(context ? ['/api/products', params] : null, fetcher);
 
-    console.log('data: ', data);
-
     return {
-        data: data,
+        summary: data,
         isLoading: !data && !error,
         error,
     };
