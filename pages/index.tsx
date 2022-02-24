@@ -5,7 +5,7 @@ import Loading from '../components/loading';
 import { useProducts } from '../lib/hooks';
 
 const Index = () => {
-    const { error, isLoading, summary } = useProducts();
+    const { error, isLoading, data } = useProducts();
 
     if (isLoading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
@@ -31,7 +31,7 @@ const Index = () => {
 
     return (
         <Panel header="Homepage">
-            <Text>{summary.name}</Text>
+            <Text>{data}</Text>
         </Panel>
     );
 };

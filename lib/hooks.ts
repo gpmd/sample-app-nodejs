@@ -26,7 +26,7 @@ export function useProducts() {
     const { data, error } = useSWR(context ? ['/api/products', params] : null, fetcher);
 
     return {
-        summary: data,
+        data: data,
         isLoading: !data && !error,
         error,
     };
