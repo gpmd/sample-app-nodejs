@@ -7,7 +7,7 @@ export default async function products(req: NextApiRequest, res: NextApiResponse
         const bigcommerce = bigcommerceClient(accessToken, storeHash);
 
         // const { data } = await bigcommerce.get('/catalog/summary');
-        const response = await bigcommerce.get('/content/widgets');
+        const response = await bigcommerce.get('/catalog/products');
         res.status(200).json(response);
     } catch (error) {
         const { message, response } = error;

@@ -30,7 +30,8 @@ const Index = () => {
     // );
 
     return (
-        <Panel header="Homepage">
+        <Panel>
+            <H1>Test</H1>
             <Text>{data}</Text>
         </Panel>
     );
