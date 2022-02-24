@@ -94,20 +94,33 @@ export const useShippingAndProductsInfo = (orderId: number) => {
     };
 }
 
-export function useWidgetList(query?: QueryParams) {
-  const { context } = useSession();
-  const params = new URLSearchParams({ ...query, context }).toString();
+// export function useWidgetList(query?: QueryParams) {
+//   const { context } = useSession();
+//   const params = new URLSearchParams({ ...query, context }).toString();
 
+//   // Use an array to send multiple arguments to fetcher
+//   const { data, error, mutate: mutateList } = useSWR(context ? ['/api/widgets/list', params] : null, fetcher);
+
+//   console.log('useWidgetList data: ', data);
+
+//   return {
+//       list: data?.data,
+//       meta: data?.meta,
+//       isLoading: !data && !error,
+//       isError: error,
+//       mutateList,
+//   };
+// }
+
+export function useWidgetList() {
+  const { context } = useSession();
   // Use an array to send multiple arguments to fetcher
-  const { data, error, mutate: mutateList } = useSWR(context ? ['/api/widgets/list', params] : null, fetcher);
+  const { data }  = useSWR(context ? ['/api/widgets/list'] : null, fetcher);
 
   console.log('useWidgetList data: ', data);
 
   return {
       list: data?.data,
       meta: data?.meta,
-      isLoading: !data && !error,
-      isError: error,
-      mutateList,
   };
 }
