@@ -31,7 +31,7 @@ const Index = () => {
 
     return (
         <Panel header="Homepage">
-            <Text>{summary}</Text>
+            <Text>{summary.name}</Text>
         </Panel>
     );
 };
