@@ -8,7 +8,7 @@ export default async function list() {
     }
   })
   .then(response => {
-    let data = response;
+    const data = response;
     console.log(data);
     return data;
   })
