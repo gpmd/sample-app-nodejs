@@ -1,6 +1,6 @@
 import useSWR from 'swr';
 import { useSession } from '../context/session';
-import { ErrorProps, ListItem, Order, QueryParams, ShippingAndProductsInfo, WidgetListItem } from '../types';
+import { ErrorProps, ListItem, Order, QueryParams, ShippingAndProductsInfo } from '../types';
 
 async function fetcher(url: string, query: string) {
     const res = await fetch(`${url}?${query}`);
@@ -89,49 +89,6 @@ export const useShippingAndProductsInfo = (orderId: number) => {
     return {
         order: data,
         isLoading: !data && !error,
-        error,
-    };
-}
-
-export function useWidgets() {
-  const { context } = useSession();
-  const params = new URLSearchParams({ context }).toString();
-  // Request is deduped and cached; Can be shared across components
-  const { data, error } = useSWR(context ? ['/api/widgets', params] : null, fetcher);
-
-  return {
-      summary: data,
-      isLoading: !data && !error,
-      error,
-  };
-}
-
-export function useWidgetList(query?: QueryParams) {
-  const { context } = useSession();
-  const params = new URLSearchParams({ ...query, context }).toString();
-
-  // Use an array to send multiple arguments to fetcher
-  const { data, error, mutate: mutateList } = useSWR(context ? ['/api/widgets/list', params] : null, fetcher);
-
-  return {
-      widgetList: data?.data,
-      meta: data?.meta,
-      isLoading: !data && !error,
-      error,
-      mutateList,
-  };
-}
-
-export function useWidgetInfo(uuid: number, widgetList: WidgetListItem[]) {
-    const { context } = useSession();
-    const params = new URLSearchParams({ context }).toString();
-    const widget = widgetList.find(item => item.uuid === uuid);
-    // Conditionally fetch widget if it doesn't exist in the list (e.g. deep linking)
-    const { data, error } = useSWR(!widget && context ? [`/api/widgets/${uuid}`, params] : null, fetcher);
-
-    return {
-        widget: widget ?? data,
-        isLoading: widget ? false : (!data && !error),
         error,
     };
 }

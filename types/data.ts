@@ -20,16 +20,3 @@ export interface ListItem extends FormData {
 export interface StringKeyValue {
     [key: string]: string;
 }
-
-export interface WidgetFormData {
-  name: string;
-}
-
-export interface WidgetTableItem {
-  uuid: number;
-  name: string;
-}
-
-export interface WidgetListItem extends WidgetFormData {
-  uuid: number;
-}
