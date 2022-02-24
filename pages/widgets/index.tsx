@@ -1,22 +1,41 @@
-import { Button, Dropdown, Panel, Small, StatefulTable, Link as StyledLink } from '@bigcommerce/big-design';
+import { Button, Dropdown, Panel, Small, Link as StyledLink, Table, TableSortDirection } from '@bigcommerce/big-design';
 import { MoreHorizIcon } from '@bigcommerce/big-design-icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import ErrorMessage from '../../components/error';
 import Loading from '../../components/loading';
 import { useWidgetList } from '../../lib/hooks';
+import { TableItem } from '../../types';
 
 const Widgets = () => {
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [columnHash, setColumnHash] = useState('');
+  const [direction, setDirection] = useState<TableSortDirection>('ASC');
   const router = useRouter();
-  // Retrieve data from the catalog/products endpoint
-  const { isError, isLoading, list = [] } = useWidgetList();
-  // Properly format data for BigDesign's StatefulTable
-  const tableItems = list.map(({ uuid, name }) => ({
+  const { isError, isLoading, list = [], meta = {} } = useWidgetList({
+    page: String(currentPage),
+    limit: String(itemsPerPage),
+    ...(columnHash && { sort: columnHash }),
+    ...(columnHash && { direction: direction.toLowerCase() }),
+  });
+  const itemsPerPageOptions = [10, 20, 50, 100];
+  const tableItems: TableItem[] = list.map(({ uuid, name }) => ({
       uuid,
       name,
   }));
-  // When rendering table headers, you can return a string or a React component:
+
+  const onItemsPerPageChange = newRange => {
+      setCurrentPage(1);
+      setItemsPerPage(newRange);
+  };
+
+  const onSort = (newColumnHash: string, newDirection: TableSortDirection) => {
+      setColumnHash(newColumnHash === 'stock' ? 'inventory_level' : newColumnHash);
+      setDirection(newDirection);
+  };
+
   const renderName = (uuid: number, name: string): ReactElement => (
       <Link href={`/widgets/${uuid}`}>
           <StyledLink>{name}</StyledLink>
@@ -35,13 +54,26 @@ const Widgets = () => {
 
   return (
       <Panel>
-          <StatefulTable
+          <Table
               columns={[
-                  { header: 'Widget name', hash: 'name', render: ({ uuid, name }) => renderName(uuid, name), sortKey: 'name' },
-                  { header: 'Action', hideHeader: true, hash: 'uuid', render: ({ uuid }) => renderAction(uuid), sortKey: 'uuid' },
+                  { header: 'Widget name', hash: 'name', render: ({ uuid, name }) => renderName(uuid, name), isSortable: true },
+                  { header: 'Action', hideHeader: true, hash: 'uuid', render: ({ uuid }) => renderAction(uuid) },
               ]}
               items={tableItems}
               itemName="Widgets"
+              pagination={{
+                  currentPage,
+                  totalItems: meta?.pagination?.total,
+                  onPageChange: setCurrentPage,
+                  itemsPerPageOptions,
+                  onItemsPerPageChange,
+                  itemsPerPage,
+              }}
+              sortable={{
+                columnHash,
+                direction,
+                onSort,
+              }}
               stickyHeader
           />
       </Panel>

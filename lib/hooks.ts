@@ -1,3 +1,4 @@
+import { errorMonitor } from 'events';
 import useSWR from 'swr';
 import { useSession } from '../context/session';
 import { ErrorProps, ListItem, Order, QueryParams, ShippingAndProductsInfo } from '../types';
@@ -93,13 +94,16 @@ export const useShippingAndProductsInfo = (orderId: number) => {
     };
 }
 
-export function useWidgetList() {
-  const encodedContext = useSession()?.context;
+export function useWidgetList(query?: QueryParams) {
+  const { context } = useSession();
+  const params = new URLSearchParams({ ...query, context }).toString();
+
   // Use an array to send multiple arguments to fetcher
-  const { data, error, mutate: mutateList } = useSWR(encodedContext ? ['/api/widgets/list', encodedContext] : null, fetcher);
+  const { data, error, mutate: mutateList } = useSWR(context ? ['/api/widgets/list', params] : null, fetcher);
 
   return {
-      list: data,
+      list: data?.data,
+      meta: data?.meta,
       isLoading: !data && !error,
       isError: error,
       mutateList,
