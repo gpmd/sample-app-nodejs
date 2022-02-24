@@ -8,6 +8,7 @@ export default async function products(req: NextApiRequest, res: NextApiResponse
 
         // const { data } = await bigcommerce.get('/catalog/summary');
         const response = await bigcommerce.get('/catalog/products');
+        console.log('response: ', response);
         res.status(200).json(response);
     } catch (error) {
         const { message, response } = error;

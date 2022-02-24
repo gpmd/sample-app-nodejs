@@ -25,6 +25,8 @@ export function useProducts() {
     // Request is deduped and cached; Can be shared across components
     const { data, error } = useSWR(context ? ['/api/products', params] : null, fetcher);
 
+    console.log('data: ', data);
+
     return {
         data: data,
         isLoading: !data && !error,
