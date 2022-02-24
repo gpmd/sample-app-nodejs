@@ -6,7 +6,7 @@ import { ReactElement, useState } from 'react';
 import ErrorMessage from '../../components/error';
 import Loading from '../../components/loading';
 import { useWidgetList } from '../../lib/hooks';
-import { TableItem } from '../../types';
+import { WidgetTableItem } from '../../types';
 
 const Widgets = () => {
     const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -21,7 +21,7 @@ const Widgets = () => {
       ...(columnHash && { direction: direction.toLowerCase() }),
     });
     const itemsPerPageOptions = [10, 20, 50, 100];
-    const tableItems: TableItem[] = list.map(({ uuid, template_file }) => ({
+    const tableItems: WidgetTableItem[] = list.map(({ uuid, template_file }) => ({
         uuid,
         template_file,
     }));

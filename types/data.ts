@@ -15,6 +15,11 @@ export interface TableItem {
     stock: number;
 }
 
+export interface WidgetTableItem {
+  uuid: number;
+  template_file: string;
+}
+
 export interface ListItem extends FormData {
     id: number;
 }
