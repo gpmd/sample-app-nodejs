@@ -1,37 +1,20 @@
-import { Box, Flex, H1, H4, Panel, Text } from '@bigcommerce/big-design';
-import styled from 'styled-components';
+import { H1, Panel, Text } from '@bigcommerce/big-design';
 import ErrorMessage from '../components/error';
 import Loading from '../components/loading';
-import { useProducts } from '../lib/hooks';
+import { useWidgets } from '../lib/hooks';
 
 const Index = () => {
-    const { error, isLoading, summary } = useProducts();
+    const { error, isLoading, data } = useWidgets();
 
     if (isLoading) return <Loading />;
     if (error) return <ErrorMessage error={error} />;
 
     return (
         <Panel header="Homepage">
-            <Flex>
-                <StyledBox border="box" borderRadius="normal" marginRight="xLarge" padding="medium">
-                    <H4>Inventory count</H4>
-                    <H1 marginBottom="none">{summary.inventory_count}</H1>
-                </StyledBox>
-                <StyledBox border="box" borderRadius="normal" marginRight="xLarge" padding="medium">
-                    <H4>Variant count</H4>
-                    <H1 marginBottom="none">{summary.variant_count}</H1>
-                </StyledBox>
-                <StyledBox border="box" borderRadius="normal" padding="medium">
-                    <H4>Primary category</H4>
-                    <H1 marginBottom="none">{summary.primary_category_name}</H1>
-                </StyledBox>
-            </Flex>
+            <H1>Widgets</H1>
+            <Text>{data}</Text>
         </Panel>
     );
 };
-
-const StyledBox = styled(Box)`
-    min-width: 10rem;
-`;
 
 export default Index;
