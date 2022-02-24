@@ -1,4 +1,4 @@
-import { Box, Flex, H1, H4, P, Panel } from '@bigcommerce/big-design';
+import { Box, Flex, H1, H4, Text, Panel } from '@bigcommerce/big-design';
 import styled from 'styled-components';
 import ErrorMessage from '../components/error';
 import Loading from '../components/loading';
@@ -17,7 +17,7 @@ const Index = () => {
             <Flex>
                 <StyledBox border="box" borderRadius="normal" marginRight="xLarge" padding="medium">
                     <H4>Widgets</H4>
-                    <P marginBottom="none">{widgetsSummary}</P>
+                    <Text marginBottom="none">{widgetsSummary}</Text>
                 </StyledBox>
             </Flex>
             <Flex>
