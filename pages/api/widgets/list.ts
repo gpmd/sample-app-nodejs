@@ -10,6 +10,7 @@ export default async function list() {
   .then(response => {
     const data = response;
     console.log(data);
+    
     return data;
   })
   .catch(err => {
