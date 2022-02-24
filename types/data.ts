@@ -8,9 +8,7 @@ export interface FormData {
 
 export interface TableItem {
     id: number;
-    uuid: number;
     name: string;
-    template_file: string;
     price: number;
     stock: number;
 }
