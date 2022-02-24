@@ -93,15 +93,15 @@ export const useShippingAndProductsInfo = (orderId: number) => {
     };
 }
 
-// Reusable SWR hooks
-// https://swr.vercel.app/
-export function useWidgets() {
+export function useWidgetList() {
   const encodedContext = useSession()?.context;
-  // Request is deduped and cached; Can be shared across components
-  const { data, error } = useSWR(encodedContext ? ['/api/widgets', encodedContext] : null, fetcher);
+  // Use an array to send multiple arguments to fetcher
+  const { data, error, mutate: mutateList } = useSWR(encodedContext ? ['/api/widgets/list', encodedContext] : null, fetcher);
 
   return {
-      widgetsSummary: data,
-      widgetsError: error,
+      list: data,
+      isLoading: !data && !error,
+      isError: error,
+      mutateList,
   };
 }
