@@ -26,18 +26,35 @@
   "rules": {
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
     "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
-    "no-console": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "react/display-name": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "newline-before-return": "error",
-    "sort-imports": "off",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
     "import/named": "off",
     "import/no-named-as-default-member": "off",
-    "import/order": "off"
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "ignore",
+        "groups": [["builtin", "external"], "internal", "parent", "sibling", "index"]
+      }
+    ]
   },
   "globals": {
     "React": "writable"
