@@ -21,8 +21,8 @@ const Widgets = () => {
     ...(columnHash && { direction: direction.toLowerCase() }),
   });
   const itemsPerPageOptions = [10, 20, 50, 100];
-  const tableItems: TableItem[] = list.map(({ uuid, name }) => ({
-      uuid,
+  const tableItems: TableItem[] = list.map(({ id, name }) => ({
+      id,
       name,
   }));
 
@@ -36,15 +36,15 @@ const Widgets = () => {
       setDirection(newDirection);
   };
 
-  const renderName = (uuid: number, name: string): ReactElement => (
-      <Link href={`/widgets/${uuid}`}>
+  const renderName = (id: number, name: string): ReactElement => (
+      <Link href={`/widgets/${id}`}>
           <StyledLink>{name}</StyledLink>
       </Link>
   );
 
-  const renderAction = (uuid: number): ReactElement => (
+  const renderAction = (id: number): ReactElement => (
       <Dropdown
-          items={[ { content: 'Edit widget', onItemClick: () => router.push(`/widgets/${uuid}`), hash: 'edit' } ]}
+          items={[ { content: 'Edit widget', onItemClick: () => router.push(`/widgets/${id}`), hash: 'edit' } ]}
           toggle={<Button iconOnly={<MoreHorizIcon color="secondary60" />} variant="subtle" />}
       />
   );
@@ -56,8 +56,8 @@ const Widgets = () => {
       <Panel>
           <Table
               columns={[
-                  { header: 'Widget name', hash: 'name', render: ({ uuid, name }) => renderName(uuid, name), isSortable: true },
-                  { header: 'Action', hideHeader: true, hash: 'uuid', render: ({ uuid }) => renderAction(uuid) },
+                  { header: 'Widget name', hash: 'name', render: ({ id, name }) => renderName(id, name), isSortable: true },
+                  { header: 'Action', hideHeader: true, hash: 'uuid', render: ({ id }) => renderAction(id) },
               ]}
               items={tableItems}
               itemName="Widgets"
