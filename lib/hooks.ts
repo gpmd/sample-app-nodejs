@@ -93,16 +93,3 @@ export const useShippingAndProductsInfo = (orderId: number) => {
         error,
     };
 }
-
-export function useWidgets() {
-  const { context } = useSession();
-  const params = new URLSearchParams({ context }).toString();
-  // Request is deduped and cached; Can be shared across components
-  const { data, error } = useSWR(context ? ['/api/widgets', params] : null, fetcher);
-
-  return {
-      data: data,
-      isLoading: !data && !error,
-      error,
-  };
-}
