@@ -10,6 +10,7 @@ export default async function widgets(req: NextApiRequest, res: NextApiResponse)
       // For this example, we'll be connecting to the Widgets API
       const { data } = await bigcommerce.get('/content/widgets');
       res.status(200).json(data);
+      console.log('widgets data: ', data);
       // Finally, handle errors
   } catch (error) {
       const { message, response } = error;
