@@ -1,7 +1,7 @@
 import { H1, Panel, Text } from '@bigcommerce/big-design';
 
 const Widgets = () => {
-  fetch("https://api.bigcommerce.com/stores/mxw8ttfcei/v3/content/widgets", {
+  const data = fetch("https://api.bigcommerce.com/stores/mxw8ttfcei/v3/content/widgets", {
     "method": "GET",
     "headers": {
       "Content-Type": "application/json",
@@ -10,18 +10,18 @@ const Widgets = () => {
     }
   })
   .then(response => {
-    const data = response;
-
-    return (
-      <Panel>
-          <H1>Widgets</H1>
-          <Text>{data}</Text>
-      </Panel>
-    );
+    console.log(response);
   })
   .catch(err => {
     console.error(err);
   });
+
+  return (
+    <Panel>
+        <H1>Widgets</H1>
+        <Text>{data}</Text>
+    </Panel>
+  );
 };
 
 export default Widgets;
