@@ -36,9 +36,9 @@ const Widgets = () => {
         setDirection(newDirection);
     };
 
-    const renderName = (id: number, name: string): ReactElement => (
+    const renderName = (id: number, uuid: string): ReactElement => (
         <Link href={`/widgets/${id}`}>
-            <StyledLink>{name}</StyledLink>
+            <StyledLink>{uuid}</StyledLink>
         </Link>
     );
 
