@@ -11,6 +11,8 @@ export default async function widgetList(req: NextApiRequest, res: NextApiRespon
 
     const response = await bigcommerce.get(`/content/widgets?${params}`);
     res.status(200).json(response);
+
+    console.log('widgetList response: ', response);
   } catch (error) {
       const { message, response } = error;
       res.status(response?.status || 500).json({ message });

@@ -101,6 +101,8 @@ export function useWidgetList(query?: QueryParams) {
   // Use an array to send multiple arguments to fetcher
   const { data, error, mutate: mutateList } = useSWR(context ? ['/api/widgets/list', params] : null, fetcher);
 
+  console.log('useWidgetList data: ', data);
+
   return {
       list: data?.data,
       meta: data?.meta,
